@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Don Lucas Marine Services — Entretien, Réparation & Performance. Môle Saint-Nicolas, Haïti.">
+<title>Don Lucas Marine Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & BASE ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy:   #0A1830;
+  --blue:   #12495E;
+  --gold:   #B8935A;
+  --gold-bright: #D4AF6A;
+  --white:  #FFFEFB;
+  --light:  #F6F1E5;
+  --muted:  #7D7669;
+  --border: #E6DFCE;
+  --text:   #1C2129;
+  --serif:  'Cormorant Garamond', Georgia, serif;
+  --radius: 4px;
+  --shadow: 0 2px 10px rgba(10,24,48,.06);
+  --shadow-lg: 0 20px 60px rgba(10,24,48,.16);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  overflow-x: hidden;
+}
+h1,h2 { font-family: var(--serif); }
+h3,h4,h5 { font-family: 'Montserrat', sans-serif; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+.container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+/* ─── SIGNATURE: WATERLINE DIVIDER ─── */
+.waterline {
+  display: flex; align-items: center; gap: 18px;
+  max-width: 1180px; margin: 0 auto; padding: 56px 24px;
+}
+.waterline-rule { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold) 15%, var(--gold) 85%, transparent); }
+.waterline-mark {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Montserrat', sans-serif; font-size: 10.5px; font-weight: 600;
+  letter-spacing: .14em; color: var(--gold); white-space: nowrap;
+}
+.waterline-mark svg { flex-shrink: 0; }
+.waterline.on-dark { color: rgba(255,255,255,.5); }
+.waterline.on-dark .waterline-mark { color: var(--gold-bright); }
+
+/* ─── LANGUAGE ELEMENTS ─── */
+[data-lang] { display: none; }
+.lang-fr [data-lang="fr"],
+.lang-es [data-lang="es"],
+.lang-en [data-lang="en"] { display: unset; }
+.lang-fr [data-lang-block="fr"],
+.lang-es [data-lang-block="es"],
+.lang-en [data-lang-block="en"] { display: block; }
+[data-lang-block] { display: none; }
+
+/* ─── TOP CONTACT BAR ─── */
+.top-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.top-bar .container {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap;
+}
+.top-logo { display: flex; align-items: center; gap: 12px; }
+.top-logo-icon {
+  width: 50px; height: 50px;
+  background: var(--navy); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.top-logo-text { line-height: 1.2; }
+.top-logo-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800; font-size: 19px;
+  color: var(--navy); letter-spacing: -.01em;
+}
+.top-logo-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; font-size: 11px;
+  color: var(--gold); letter-spacing: .1em; text-transform: uppercase;
+}
+.top-logo-tag {
+  font-size: 9px; color: var(--muted); letter-spacing: .1em; margin-top: 1px;
+}
+.top-info { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+.top-info-item {
+  display: flex; align-items: flex-start; gap: 9px;
+  font-size: 12.5px; color: var(--text); line-height: 1.4;
+}
+.top-info-item svg { color: var(--navy); flex-shrink: 0; margin-top: 2px; }
+.top-info-item strong { display: block; font-weight: 700; }
+@media (max-width: 900px) { .top-info-item.hide-mobile { display: none; } }
+@media (max-width: 600px) { .top-info { display: none; } }
+
+/* ─── LANGUAGE SWITCHER ─── */
+.lang-switcher { display: flex; gap: 6px; }
+.lang-btn {
+  background: none; border: 1px solid rgba(255,255,255,.25);
+  color: rgba(255,255,255,.7); border-radius: 4px;
+  padding: 3px 10px; font-size: 11px; font-family: 'Montserrat', sans-serif;
+  font-weight: 600; cursor: pointer; letter-spacing: .05em; transition: .2s;
+}
+.lang-btn:hover, .lang-btn.active {
+  background: var(--gold); border-color: var(--gold); color: var(--navy);
+}
+
+/* ─── NAV ─── */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--navy);
+  box-shadow: 0 2px 16px rgba(10,24,48,.2);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px; gap: 24px;
+}
+.nav-links { display: flex; gap: 2px; align-items: center; }
+.nav-link {
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 12.5px; color: rgba(255,255,255,.85); padding: 10px 15px;
+  border-radius: 6px; transition: .18s; letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.nav-link:hover, .nav-link.active { background: rgba(255,255,255,.08); color: var(--gold); }
+.nav-right { display: flex; align-items: center; gap: 18px; }
+.nav-cta {
+  background: var(--gold); color: var(--navy);
+  font-family: 'Montserrat', sans-serif; font-weight: 800;
+  font-size: 12.5px; padding: 11px 22px; border-radius: 6px;
+  display: flex; align-items: center; gap: 8px;
+  transition: .2s; white-space: nowrap; letter-spacing: .03em;
+}
+.nav-cta:hover { background: #D4AF6A; transform: translateY(-1px); }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative; overflow: hidden;
+  background:
+    linear-gradient(100deg, rgba(10,24,48,.96) 0%, rgba(10,24,48,.82) 40%, rgba(18,73,94,.55) 70%, rgba(18,73,94,.28) 100%),
+    linear-gradient(145deg, #081422 0%, #0A1830 40%, #0F2A42 100%);
+  background-size: cover, cover;
+  background-position: center, center;
+  min-height: 92vh;
+  display: flex; align-items: center;
+}
+.hero.has-photo {
+  background-image:
+    linear-gradient(100deg, rgba(10,24,48,.96) 0%, rgba(10,24,48,.82) 40%, rgba(18,73,94,.55) 70%, rgba(18,73,94,.28) 100%),
+    url('images/hero-boatyard.jpg');
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+}
+.hero-bg-pattern {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    radial-gradient(circle at 70% 50%, rgba(18,73,94,.18) 0%, transparent 55%),
+    radial-gradient(circle at 10% 80%, rgba(184,147,90,.09) 0%, transparent 45%);
+}
+.hero .container {
+  position: relative; z-index: 2;
+  padding-top: 64px; padding-bottom: 48px;
+}
+.hero-content { max-width: 640px; }
+.hero-eyebrow {
+  font-family: 'Montserrat', sans-serif; font-weight: 600;
+  font-size: 11.5px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold-bright); margin-bottom: 26px;
+  display: flex; align-items: center; gap: 12px;
+  opacity: 0; animation: heroFadeUp .8s .1s cubic-bezier(.2,.6,.2,1) forwards;
+}
+.hero-eyebrow::before {
+  content: ''; display: block; width: 32px; height: 1px; background: var(--gold-bright);
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(42px, 6vw, 76px);
+  font-weight: 600; line-height: 1.04;
+  color: var(--white);
+  letter-spacing: -.01em;
+  margin-bottom: 26px;
+  opacity: 0; animation: heroFadeUp .8s .28s cubic-bezier(.2,.6,.2,1) forwards;
+}
+.hero h1 em {
+  font-style: italic; color: var(--gold-bright); font-weight: 500;
+}
+.hero-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 16.5px; line-height: 1.75; font-weight: 400;
+  color: rgba(255,255,255,.72);
+  max-width: 460px; margin-bottom: 40px;
+  opacity: 0; animation: heroFadeUp .8s .46s cubic-bezier(.2,.6,.2,1) forwards;
+}
+.hero-actions {
+  display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 64px;
+  opacity: 0; animation: heroFadeUp .8s .64s cubic-bezier(.2,.6,.2,1) forwards;
+}
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-eyebrow, .hero h1, .hero-desc, .hero-actions { opacity: 1; animation: none; }
+}
+
+/* ─── HERO FEATURE STRIP ─── */
+.hero-features {
+  position: relative; z-index: 2;
+  background: rgba(10,24,48,.5);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 6px;
+  backdrop-filter: blur(14px);
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  opacity: 0; animation: heroFadeUp .8s .8s cubic-bezier(.2,.6,.2,1) forwards;
+}
+.hero-illustration {
+  position: absolute; top: 0; right: -4%; bottom: 0;
+  width: 52%; z-index: 1; pointer-events: none;
+  opacity: .9;
+}
+.hero.has-photo .hero-illustration { display: none; }
+@media (max-width: 900px) { .hero-illustration { display: none; } }
+.hero-feature {
+  display: flex; align-items: center; gap: 12px;
+  padding: 22px 24px;
+  border-right: 1px solid rgba(255,255,255,.12);
+}
+.hero-feature:last-child { border-right: none; }
+.hero-feature-icon {
+  width: 38px; height: 38px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold);
+}
+.hero-feature-title {
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 13.5px; color: var(--white);
+}
+.hero-feature-desc { font-size: 11.5px; color: rgba(255,255,255,.6); margin-top: 1px; }
+@media (max-width: 900px) {
+  .hero-features { grid-template-columns: repeat(2, 1fr); }
+  .hero-feature { border-bottom: 1px solid rgba(255,255,255,.12); }
+  .hero-feature:nth-child(2) { border-right: none; }
+}
+@media (max-width: 560px) {
+  .hero-features { grid-template-columns: 1fr; }
+  .hero-feature { border-right: none !important; }
+}
+.btn-primary {
+  background: var(--gold); color: var(--navy);
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 13px; padding: 15px 30px; border-radius: var(--radius);
+  display: flex; align-items: center; gap: 9px;
+  transition: .25s; letter-spacing: .04em; text-transform: uppercase;
+  box-shadow: 0 6px 24px rgba(184,147,90,.28);
+}
+.btn-primary:hover { background: var(--gold-bright); transform: translateY(-1px); box-shadow: 0 10px 30px rgba(184,147,90,.36); }
+.btn-outline {
+  border: 1px solid rgba(255,255,255,.35); color: var(--white);
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 13px; padding: 14px 30px; border-radius: var(--radius);
+  display: flex; align-items: center; gap: 9px;
+  transition: .25s; letter-spacing: .04em; text-transform: uppercase;
+}
+.btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,.06); }
+.hero-coords {
+  margin-top: 40px;
+  font-family: 'Montserrat', sans-serif; font-size: 11px;
+  color: rgba(255,255,255,.4); letter-spacing: .1em;
+  display: flex; align-items: center; gap: 8px;
+}
+.hero-coords::before {
+  content: ''; display: block;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold); box-shadow: 0 0 0 4px rgba(184,147,90,.2);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{box-shadow:0 0 0 4px rgba(184,147,90,.2)} 50%{box-shadow:0 0 0 8px rgba(184,147,90,.08)} }
+
+/* Hero right — animated vessel card */
+.hero-visual {
+  display: flex; flex-direction: column; gap: 16px; align-items: flex-end;
+}
+.vessel-card {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 6px; padding: 28px;
+  backdrop-filter: blur(12px);
+  width: 100%; max-width: 380px;
+}
+.vessel-card-title {
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 13px; color: var(--gold); letter-spacing: .08em;
+  text-transform: uppercase; margin-bottom: 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+.vessel-card-title::after {
+  content: ''; flex: 1; height: 1px; background: rgba(184,147,90,.3);
+}
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.stat-item {}
+.stat-value {
+  font-family: 'Montserrat', sans-serif; font-weight: 800;
+  font-size: 26px; color: var(--white); line-height: 1;
+}
+.stat-label {
+  font-size: 11px; color: rgba(255,255,255,.5);
+  margin-top: 3px; letter-spacing: .04em;
+}
+.hero-cert-row {
+  display: flex; gap: 10px; width: 100%; max-width: 380px; flex-wrap: wrap;
+}
+.cert-pill {
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13);
+  border-radius: 6px; padding: 7px 14px;
+  font-family: 'Montserrat', sans-serif; font-size: 11px;
+  font-weight: 600; color: rgba(255,255,255,.8); letter-spacing: .04em;
+  display: flex; align-items: center; gap: 6px;
+}
+.cert-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; }
+
+/* Animated wave canvas */
+.wave-canvas-wrap {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 90px; overflow: hidden; line-height: 0;
+}
+
+/* ─── TRUST BAR ─── */
+.trust-bar {
+  background: var(--light); border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+}
+.trust-bar .container {
+  display: flex; align-items: center; justify-content: center;
+  gap: 40px; flex-wrap: wrap;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 13px; color: var(--navy);
+}
+.trust-item svg { color: var(--blue); }
+.trust-divider { width: 1px; height: 28px; background: var(--border); }
+
+/* ─── SECTION HEADERS ─── */
+.section { padding: 128px 0; }
+.section.alt { background: var(--light); }
+.section-tag {
+  font-family: 'Montserrat', sans-serif; font-weight: 600;
+  font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-tag::before, .section-tag::after {
+  content: ''; flex: 0 0 24px; height: 1px; background: var(--gold);
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(30px, 4.2vw, 48px);
+  font-weight: 600; color: var(--navy);
+  line-height: 1.12; letter-spacing: -.01em;
+  margin-bottom: 20px;
+}
+.section-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+.section-sub {
+  font-size: 16.5px; color: var(--muted); line-height: 1.75;
+  max-width: 600px; margin-bottom: 60px;
+}
+.text-center { text-align: center; }
+.text-center .section-sub { margin-left: auto; margin-right: auto; }
+.text-center .section-tag { justify-content: center; }
+@media (max-width: 700px) { .section { padding: 84px 0; } }
+
+/* ─── QUICK SERVICES GRID (icon overview) ─── */
+.quick-services-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 18px; margin-top: 8px;
+}
+.quick-service-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 6px; padding: 28px 18px;
+  text-align: center; transition: .2s;
+}
+.quick-service-card:hover {
+  border-color: var(--gold); box-shadow: var(--shadow); transform: translateY(-2px);
+}
+.quick-service-icon {
+  width: 56px; height: 56px; margin: 0 auto 16px;
+  border-radius: 50%; border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--navy); transition: .2s;
+}
+.quick-service-card:hover .quick-service-icon { border-color: var(--gold); color: var(--gold); }
+.quick-service-title {
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 13px; color: var(--navy); line-height: 1.4;
+  letter-spacing: .01em;
+}
+@media (max-width: 900px) { .quick-services-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* ─── SERVICES ─── */
+.services-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+.service-card {
+  background: var(--white); border-radius: 6px;
+  border: 1px solid var(--border);
+  padding: 32px 28px;
+  transition: .25s; position: relative; overflow: hidden;
+}
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px; background: linear-gradient(90deg, var(--blue), var(--gold));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s;
+}
+.service-card:hover { border-color: var(--blue); box-shadow: var(--shadow); transform: translateY(-3px); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-icon {
+  width: 56px; height: 56px; border-radius: 6px;
+  background: rgba(26,111,196,.09);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+}
+.service-icon svg { color: var(--blue); }
+.service-title {
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 16px; color: var(--navy); margin-bottom: 10px;
+}
+.service-desc { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+/* ─── MISSION / VISION / VALUES ─── */
+.mvv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.mvv-card {
+  background: var(--white); border-radius: 6px;
+  border: 1px solid var(--border);
+  padding: 36px 32px;
+}
+.mvv-card.full { grid-column: 1 / -1; }
+.mvv-card.navy-bg {
+  background: var(--navy); color: var(--white); border-color: var(--navy);
+}
+.mvv-label {
+  font-family: 'Montserrat', sans-serif; font-weight: 800;
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.mvv-label::before { content: ''; width: 20px; height: 2px; background: var(--gold); }
+.mvv-heading {
+  font-family: 'Montserrat', sans-serif; font-weight: 800;
+  font-size: 22px; color: var(--navy); margin-bottom: 14px;
+  line-height: 1.25;
+}
+.mvv-card.navy-bg .mvv-heading { color: var(--white); }
+.mvv-text { font-size: 15px; line-height: 1.8; color: var(--muted); }
+.mvv-card.navy-bg .mvv-text { color: rgba(255,255,255,.75); }
+.values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 12px; }
+.value-item { display: flex; gap: 16px; align-items: flex-start; }
+.value-icon {
+  width: 42px; height: 42px; border-radius: 6px;
+  background: rgba(184,147,90,.12); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.value-icon svg { color: var(--gold); }
+.value-name {
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 14px; color: var(--navy); margin-bottom: 5px;
+}
+.mvv-card.navy-bg .value-name { color: var(--white); }
+.value-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+.mvv-card.navy-bg .value-desc { color: rgba(255,255,255,.65); }
+
+/* ─── COMMITMENT ─── */
+.commitment-wrap {
+  background: linear-gradient(135deg, var(--navy) 0%, #1a3461 100%);
+  border-radius: 6px; padding: 56px 52px;
+  display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center;
+}
+.commitment-text { color: var(--white); }
+.commitment-text p { font-size: 16px; line-height: 1.85; color: rgba(255,255,255,.8); }
+.commitment-quote {
+  font-family: 'Montserrat', sans-serif; font-weight: 800;
+  font-size: 24px; color: var(--white); margin-bottom: 20px;
+  line-height: 1.3;
+}
+.commitment-quote span { color: var(--gold); }
+.commitment-side { text-align: center; }
+.commitment-badge {
+  width: 160px; height: 160px; border-radius: 50%;
+  border: 3px solid rgba(184,147,90,.4);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 4px;
+}
+.badge-big {
+  font-family: 'Montserrat', sans-serif; font-weight: 800;
+  font-size: 44px; color: var(--gold); line-height: 1;
+}
+.badge-small {
+  font-family: 'Montserrat', sans-serif; font-weight: 600;
+  font-size: 11px; color: rgba(255,255,255,.6);
+  letter-spacing: .1em; text-align: center;
+}
+
+/* ─── GALLERY ─── */
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px;
+  gap: 16px;
+}
+.gallery-item {
+  border-radius: 6px; position: relative; overflow: hidden;
+  background: linear-gradient(145deg, #0A1830 0%, #12495E 100%);
+  display: flex; align-items: flex-end; padding: 16px;
+  transition: .25s;
+}
+.gallery-item::before {
+  content: attr(data-caption-fr);
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12.5px;
+  color: rgba(255,255,255,.9); letter-spacing: .01em;
+}
+.lang-es .gallery-item::before { content: attr(data-caption-es); }
+.lang-en .gallery-item::before { content: attr(data-caption-en); }
+.gallery-item::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,.55) 0%, transparent 55%);
+}
+.gallery-item::before { position: relative; z-index: 1; }
+.gallery-item:hover { transform: scale(1.02); box-shadow: var(--shadow-lg); }
+.gallery-item.span-2 { grid-column: span 2; }
+.gallery-note {
+  text-align: center; font-size: 12.5px; color: var(--muted);
+  margin-top: 22px; font-style: italic;
+}
+@media (max-width: 900px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-item.span-2 { grid-column: span 2; }
+}
+@media (max-width: 560px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-item.span-2 { grid-column: span 1; }
+}
+
+/* ─── CAREERS ─── */
+.jobs-list { display: flex; flex-direction: column; gap: 14px; max-width: 760px; margin: 0 auto; }
+.job-item {
+  background: var(--white); border: 1px solid var(--border); border-radius: 6px;
+  padding: 22px 26px; display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap; transition: .2s;
+}
+.job-item:hover { border-color: var(--gold); box-shadow: var(--shadow); }
+.job-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15.5px; color: var(--navy); }
+.job-meta { font-size: 12.5px; color: var(--muted); margin-top: 3px; }
+.job-apply {
+  background: var(--navy); color: var(--white);
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12.5px;
+  padding: 10px 22px; border-radius: 6px; white-space: nowrap; transition: .2s;
+}
+.job-apply:hover { background: var(--blue); }
+.jobs-note {
+  text-align: center; font-size: 13.5px; color: var(--muted);
+  margin-top: 28px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.7;
+}
+.jobs-note a { color: var(--blue); font-weight: 600; }
+@media (max-width: 560px) { .job-item { flex-direction: column; align-items: flex-start; } .job-apply { width: 100%; text-align: center; } }
+
+/* ─── FACILITIES / INFRASTRUCTURE ─── */
+.facility-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.facility-card {
+  background: var(--white); border-radius: 6px;
+  border: 1px solid var(--border); padding: 26px 22px;
+  transition: .2s;
+}
+.facility-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.facility-num {
+  font-family: 'Montserrat', sans-serif; font-weight: 800;
+  font-size: 36px; color: var(--blue); line-height: 1;
+  margin-bottom: 6px;
+}
+.facility-unit {
+  font-family: 'Montserrat', sans-serif; font-size: 14px;
+  color: var(--muted); font-weight: 600;
+}
+.facility-label {
+  font-family: 'Montserrat', sans-serif; font-size: 13px;
+  color: var(--navy); font-weight: 600; margin-top: 8px;
+}
+
+/* ─── LOCATION ─── */
+.location-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+  align-items: start;
+}
+.location-map-frame {
+  background: var(--navy); border-radius: 6px;
+  overflow: hidden; position: relative;
+  height: 360px;
+  display: flex; align-items: center; justify-content: center;
+}
+.map-placeholder { text-align: center; color: rgba(255,255,255,.6); }
+.map-pin-animation {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: rgba(184,147,90,.15); margin: 0 auto 16px;
+  display: flex; align-items: center; justify-content: center;
+  animation: mapPulse 2.5s infinite;
+}
+@keyframes mapPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+.map-coords {
+  font-family: 'Montserrat', sans-serif; font-size: 13px;
+  letter-spacing: .08em; font-weight: 600; color: var(--gold);
+  margin-top: 10px;
+}
+.location-details { display: flex; flex-direction: column; gap: 20px; }
+.loc-item {
+  display: flex; gap: 16px; align-items: flex-start;
+  background: var(--light); border-radius: 6px; padding: 20px;
+  border: 1px solid var(--border);
+}
+.loc-icon {
+  width: 44px; height: 44px; border-radius: 6px;
+  background: rgba(26,111,196,.1); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.loc-icon svg { color: var(--blue); }
+.loc-title {
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 14px; color: var(--navy); margin-bottom: 4px;
+}
+.loc-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* ─── SECURITY SECTION ─── */
+.security-section {
+  background: var(--light); padding: 80px 0;
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.security-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.security-card {
+  background: var(--white); border-radius: 6px;
+  border: 1px solid var(--border); padding: 24px 20px;
+  display: flex; align-items: flex-start; gap: 14px;
+}
+.sec-icon {
+  width: 40px; height: 40px; border-radius: 9px;
+  background: rgba(34,197,94,.1); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.sec-icon svg { color: #22c55e; }
+.sec-title {
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 13px; color: var(--navy); margin-bottom: 4px;
+}
+.sec-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+/* ─── CONTACT ─── */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.contact-form {
+  background: var(--white); border-radius: 6px;
+  border: 1px solid var(--border); padding: 36px 32px;
+  box-shadow: var(--shadow);
+}
+.form-title {
+  font-family: 'Montserrat', sans-serif; font-weight: 800;
+  font-size: 20px; color: var(--navy); margin-bottom: 24px;
+}
+.form-group { margin-bottom: 18px; }
+.form-label {
+  display: block; font-family: 'Montserrat', sans-serif;
+  font-weight: 600; font-size: 12px; color: var(--navy);
+  letter-spacing: .05em; margin-bottom: 7px;
+}
+.form-input {
+  width: 100%; padding: 12px 16px; border: 1.5px solid var(--border);
+  border-radius: 8px; font-family: 'Inter', sans-serif;
+  font-size: 14px; color: var(--text); background: var(--white);
+  transition: .2s; outline: none;
+}
+.form-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,111,196,.12); }
+.form-input.textarea { min-height: 110px; resize: vertical; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-submit {
+  width: 100%; padding: 14px; background: var(--navy);
+  color: var(--white); font-family: 'Montserrat', sans-serif;
+  font-weight: 700; font-size: 14px; border: none;
+  border-radius: 8px; cursor: pointer; transition: .2s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  letter-spacing: .03em;
+}
+.form-submit:hover { background: var(--blue); }
+.contact-info { display: flex; flex-direction: column; gap: 24px; }
+.contact-headline {
+  font-family: 'Montserrat', sans-serif; font-weight: 800;
+  font-size: 28px; color: var(--navy); line-height: 1.2;
+  margin-bottom: 8px;
+}
+.contact-subtext { font-size: 15px; color: var(--muted); line-height: 1.75; }
+.contact-items { display: flex; flex-direction: column; gap: 14px; }
+.contact-item {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 16px; border-radius: 6px;
+  border: 1px solid var(--border); background: var(--light);
+}
+.contact-item-icon {
+  width: 38px; height: 38px; border-radius: 8px;
+  background: rgba(26,111,196,.1); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.contact-item-icon svg { color: var(--blue); }
+.contact-item-label {
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 11px; color: var(--muted); letter-spacing: .06em;
+  text-transform: uppercase; margin-bottom: 3px;
+}
+.contact-item-value { font-size: 14px; color: var(--navy); font-weight: 500; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--navy); color: var(--white); padding: 64px 0 0;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px; margin-bottom: 48px;
+}
+.footer-brand p {
+  font-size: 14px; color: rgba(255,255,255,.55);
+  line-height: 1.8; margin-top: 16px; margin-bottom: 24px;
+  max-width: 300px;
+}
+.footer-logo-name {
+  font-family: 'Montserrat', sans-serif; font-weight: 800;
+  font-size: 18px; color: var(--white);
+}
+.footer-logo-sub {
+  font-family: 'Montserrat', sans-serif; font-weight: 600;
+  font-size: 9px; letter-spacing: .18em; color: var(--gold);
+  text-transform: uppercase;
+}
+.social-row { display: flex; gap: 10px; }
+.social-btn {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,.6); transition: .2s; cursor: pointer;
+}
+.social-btn:hover { background: var(--blue); border-color: var(--blue); color: var(--white); }
+.footer-col-title {
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+}
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-link {
+  font-size: 13px; color: rgba(255,255,255,.55); transition: .18s;
+  display: flex; align-items: center; gap: 6px;
+}
+.footer-link:hover { color: var(--white); }
+.footer-link::before { content: '›'; color: var(--gold); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding: 20px 0;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-bottom-text { font-size: 12px; color: rgba(255,255,255,.4); }
+.footer-bottom-right { display: flex; gap: 20px; }
+.footer-bottom-link { font-size: 12px; color: rgba(255,255,255,.4); transition: .18s; }
+.footer-bottom-link:hover { color: rgba(255,255,255,.8); }
+
+/* ─── MOBILE ─── */
+@media (max-width: 900px) {
+  .hero .container { grid-template-columns: 1fr; padding-bottom: 80px; }
+  .hero-visual { display: none; }
+  .mvv-grid { grid-template-columns: 1fr; }
+  .mvv-card.full { grid-column: auto; }
+  .commitment-wrap { grid-template-columns: 1fr; }
+  .commitment-side { display: none; }
+  .facility-grid { grid-template-columns: repeat(2, 1fr); }
+  .location-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+}
+@media (max-width: 600px) {
+  .section { padding: 64px 0; }
+  .facility-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .trust-bar .container { gap: 16px; }
+  .trust-divider { display: none; }
+}
+/* Mobile menu */
+.mobile-menu {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: var(--navy); flex-direction: column;
+  align-items: center; justify-content: center; gap: 24px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-nav-link {
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 22px; color: var(--white); transition: .18s;
+}
+.mobile-nav-link:hover { color: var(--gold); }
+.mobile-close {
+  position: absolute; top: 24px; right: 24px;
+  background: none; border: none; color: var(--white); cursor: pointer;
+}
+</style>
+</head>
+<body class="lang-fr">
+
+<!-- ─── MOBILE MENU ─── -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation">
+  <button class="mobile-close" onclick="closeMobile()" aria-label="Fermer">
+    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a class="mobile-nav-link" href="#home" onclick="closeMobile()"><span data-lang="fr">Accueil</span><span data-lang="es">Inicio</span><span data-lang="en">Home</span></a>
+  <a class="mobile-nav-link" href="#mission" onclick="closeMobile()"><span data-lang="fr">À propos</span><span data-lang="es">Nosotros</span><span data-lang="en">About</span></a>
+  <a class="mobile-nav-link" href="#services" onclick="closeMobile()"><span data-lang="fr">Services</span><span data-lang="es">Servicios</span><span data-lang="en">Services</span></a>
+  <a class="mobile-nav-link" href="#installations" onclick="closeMobile()"><span data-lang="fr">Projets</span><span data-lang="es">Proyectos</span><span data-lang="en">Projects</span></a>
+  <a class="mobile-nav-link" href="#galerie" onclick="closeMobile()"><span data-lang="fr">Galerie</span><span data-lang="es">Galería</span><span data-lang="en">Gallery</span></a>
+  <a class="mobile-nav-link" href="#carrieres" onclick="closeMobile()"><span data-lang="fr">Carrières</span><span data-lang="es">Empleos</span><span data-lang="en">Careers</span></a>
+  <a class="mobile-nav-link" href="#contact" onclick="closeMobile()"><span data-lang="fr">Contact</span><span data-lang="es">Contacto</span><span data-lang="en">Contact</span></a>
+</div>
+
+<!-- ─── TOP CONTACT BAR ─── -->
+<div class="top-bar" role="complementary" aria-label="Coordonnées">
+  <div class="container">
+    <a class="top-logo" href="#home" aria-label="Don Lucas Marine Services — Accueil">
+      <div class="top-logo-icon" aria-hidden="true">
+        <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#B8935A" stroke-width="2">
+          <path d="M3 17l9-12 9 12" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M1 20h22" stroke-linecap="round"/>
+          <circle cx="12" cy="7" r="1.5" fill="#B8935A" stroke="none"/>
+        </svg>
+      </div>
+      <div class="top-logo-text">
+        <div class="top-logo-name">DON LUCAS <span style="color:var(--gold)">MARINE SERVICES</span></div>
+        <div class="top-logo-tag">
+          <span data-lang="fr">ENTRETIEN · RÉPARATION · PERFORMANCE</span>
+          <span data-lang="es">MANTENIMIENTO · REPARACIÓN · RENDIMIENTO</span>
+          <span data-lang="en">MAINTENANCE · REPAIR · PERFORMANCE</span>
+        </div>
+      </div>
+    </a>
+    <div class="top-info">
+      <div class="top-info-item hide-mobile">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Môle Saint-Nicolas,<br>Nord-Ouest, Haïti</span>
+      </div>
+      <div class="top-info-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.08 6.08l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <a href="tel:+50940123456"><strong>+509 40 12 3456</strong></a>
+      </div>
+      <div class="top-info-item hide-mobile">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+        <a href="mailto:info@donlucasmarine.com">info@donlucasmarine.com</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── NAVBAR ─── -->
+<nav class="navbar" role="navigation" aria-label="Navigation principale">
+  <div class="container nav-inner">
+    <div class="nav-links" role="list">
+      <a class="nav-link" href="#home" role="listitem"><span data-lang="fr">Accueil</span><span data-lang="es">Inicio</span><span data-lang="en">Home</span></a>
+      <a class="nav-link" href="#mission" role="listitem"><span data-lang="fr">À propos</span><span data-lang="es">Nosotros</span><span data-lang="en">About</span></a>
+      <a class="nav-link" href="#services" role="listitem"><span data-lang="fr">Services</span><span data-lang="es">Servicios</span><span data-lang="en">Services</span></a>
+      <a class="nav-link" href="#installations" role="listitem"><span data-lang="fr">Projets</span><span data-lang="es">Proyectos</span><span data-lang="en">Projects</span></a>
+      <a class="nav-link" href="#galerie" role="listitem"><span data-lang="fr">Galerie</span><span data-lang="es">Galería</span><span data-lang="en">Gallery</span></a>
+      <a class="nav-link" href="#carrieres" role="listitem"><span data-lang="fr">Carrières</span><span data-lang="es">Empleos</span><span data-lang="en">Careers</span></a>
+      <a class="nav-link" href="#contact" role="listitem"><span data-lang="fr">Contact</span><span data-lang="es">Contacto</span><span data-lang="en">Contact</span></a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-switcher" role="group" aria-label="Sélection de langue">
+        <button class="lang-btn active" onclick="setLang('fr')" lang="fr" aria-label="Français">FR</button>
+        <button class="lang-btn" onclick="setLang('es')" lang="es" aria-label="Español">ES</button>
+        <button class="lang-btn" onclick="setLang('en')" lang="en" aria-label="English">EN</button>
+      </div>
+      <a class="nav-cta" href="#contact" aria-label="Demander un devis">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span data-lang="fr">Demander un devis</span><span data-lang="es">Pedir cotización</span><span data-lang="en">Get a Quote</span>
+      </a>
+      <button class="nav-toggle" onclick="openMobile()" aria-label="Ouvrir le menu" aria-expanded="false" id="navToggle">
+        <svg width="24" height="24" fill="none" stroke="var(--white)" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── HERO ───
+     Nota: agrega la clase "has-photo" al hero (línea siguiente) una vez subas tu
+     foto real a images/hero-boatyard.jpg — mientras tanto se muestra la ilustración SVG. -->
+<section class="hero" id="home" role="banner">
+  <div class="hero-bg-pattern" aria-hidden="true"></div>
+  <svg class="hero-illustration" viewBox="0 0 600 500" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+    <defs>
+      <linearGradient id="skyFade" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#12495E" stop-opacity=".18"/>
+        <stop offset="100%" stop-color="#12495E" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="600" height="500" fill="url(#skyFade)"/>
+    <!-- distant hills -->
+    <path d="M0 300 Q100 260 220 290 T440 285 T600 300 V500 H0 Z" fill="#0F2A42" opacity=".55"/>
+    <!-- water -->
+    <path d="M0 360 Q150 340 300 358 T600 355 V500 H0 Z" fill="#081422" opacity=".8"/>
+    <path d="M0 380 Q160 400 320 382 T600 388 V500 H0 Z" fill="#0A1830"/>
+    <!-- travel lift crane -->
+    <g stroke="#B8935A" stroke-width="4" fill="none" stroke-linecap="round">
+      <path d="M120 380 L120 150"/>
+      <path d="M420 380 L420 150"/>
+      <path d="M120 150 L420 150"/>
+      <path d="M90 380 L150 380"/>
+      <path d="M390 380 L450 380"/>
+      <path d="M120 150 L100 180 M120 150 L140 180"/>
+      <path d="M420 150 L400 180 M420 150 L440 180"/>
+    </g>
+    <!-- lifting straps -->
+    <g stroke="#7d8ba3" stroke-width="2" opacity=".7">
+      <path d="M210 150 L230 260"/>
+      <path d="M330 150 L310 260"/>
+    </g>
+    <!-- hull -->
+    <path d="M195 260 Q270 235 345 260 L335 300 Q270 320 205 300 Z" fill="#FFFEFB"/>
+    <path d="M205 300 Q270 318 335 300 L328 312 Q270 328 212 312 Z" fill="#0A1830"/>
+    <rect x="240" y="222" width="60" height="30" rx="4" fill="#12495E" opacity=".85"/>
+    <!-- small boat -->
+    <path d="M60 370 Q90 358 130 368 L124 386 Q90 396 66 386 Z" fill="#0F2A42"/>
+    <rect x="88" y="345" width="26" height="18" rx="2" fill="#1A2540"/>
+    <!-- ripples -->
+    <g stroke="#12495E" stroke-width="2" opacity=".3" fill="none">
+      <path d="M40 420 Q120 410 200 420 T360 420 T520 420"/>
+      <path d="M20 450 Q120 442 220 450 T420 450 T580 450"/>
+    </g>
+  </svg>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span data-lang="fr">Experts en services maritimes</span>
+        <span data-lang="es">Expertos en servicios marítimos</span>
+        <span data-lang="en">Maritime services experts</span>
+      </div>
+      <h1>
+        <span data-lang-block="fr">Entretien.<br>Réparation.<br><em>Performance.</em></span>
+        <span data-lang-block="es">Mantenimiento.<br>Reparación.<br><em>Rendimiento.</em></span>
+        <span data-lang-block="en">Maintenance.<br>Repair.<br><em>Performance.</em></span>
+      </h1>
+      <p class="hero-desc">
+        <span data-lang="fr">Solutions complètes pour vos embarcations et équipements marins avec qualité, sécurité et professionnalisme.</span>
+        <span data-lang="es">Soluciones completas para sus embarcaciones y equipos marinos con calidad, seguridad y profesionalismo.</span>
+        <span data-lang="en">Complete solutions for your vessels and marine equipment, delivered with quality, safety and professionalism.</span>
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#services" aria-label="Découvrir nos services">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span data-lang="fr">Nos Services</span><span data-lang="es">Nuestros Servicios</span><span data-lang="en">Our Services</span>
+        </a>
+        <a class="btn-outline" href="#" aria-label="Voir la vidéo" onclick="return false;">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+          <span data-lang="fr">Voir la vidéo</span><span data-lang="es">Ver el video</span><span data-lang="en">Watch the video</span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-features" role="list" aria-label="Points forts">
+      <div class="hero-feature" role="listitem">
+        <div class="hero-feature-icon" aria-hidden="true"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div>
+          <div class="hero-feature-title"><span data-lang="fr">Sécurité</span><span data-lang="es">Seguridad</span><span data-lang="en">Safety</span></div>
+          <div class="hero-feature-desc"><span data-lang="fr">Notre priorité</span><span data-lang="es">Nuestra prioridad</span><span data-lang="en">Our priority</span></div>
+        </div>
+      </div>
+      <div class="hero-feature" role="listitem">
+        <div class="hero-feature-icon" aria-hidden="true"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/></svg></div>
+        <div>
+          <div class="hero-feature-title"><span data-lang="fr">Qualité</span><span data-lang="es">Calidad</span><span data-lang="en">Quality</span></div>
+          <div class="hero-feature-desc"><span data-lang="fr">Standards élevés</span><span data-lang="es">Altos estándares</span><span data-lang="en">High standards</span></div>
+        </div>
+      </div>
+      <div class="hero-feature" role="listitem">
+        <div class="hero-feature-icon" aria-hidden="true"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div>
+          <div class="hero-feature-title"><span data-lang="fr">Expertise</span><span data-lang="es">Experiencia</span><span data-lang="en">Expertise</span></div>
+          <div class="hero-feature-desc"><span data-lang="fr">Équipe qualifiée</span><span data-lang="es">Equipo calificado</span><span data-lang="en">Qualified team</span></div>
+        </div>
+      </div>
+      <div class="hero-feature" role="listitem">
+        <div class="hero-feature-icon" aria-hidden="true"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div>
+          <div class="hero-feature-title"><span data-lang="fr">Disponibilité</span><span data-lang="es">Disponibilidad</span><span data-lang="en">Availability</span></div>
+          <div class="hero-feature-desc"><span data-lang="fr">Service rapide</span><span data-lang="es">Servicio rápido</span><span data-lang="en">Fast service</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="waterline">
+  <div class="waterline-rule"></div>
+  <div class="waterline-mark">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="3" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="21" y2="12"/></svg>
+    19°42'35.70"N · 73°27'08.03"W
+  </div>
+  <div class="waterline-rule"></div>
+</div>
+
+<!-- ─── SERVICES OVERVIEW GRID ─── -->
+<section class="section" id="services" aria-labelledby="services-overview-title">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-tag">
+        <span data-lang="fr">Nos Services</span>
+        <span data-lang="es">Nuestros Servicios</span>
+        <span data-lang="en">Our Services</span>
+      </div>
+      <h2 class="section-title" id="services-overview-title">
+        <span data-lang="fr">Des solutions complètes pour le secteur maritime</span>
+        <span data-lang="es">Soluciones completas para el sector marítimo</span>
+        <span data-lang="en">Complete solutions for the maritime sector</span>
+      </h2>
+    </div>
+    <div class="quick-services-grid" role="list">
+      <a class="quick-service-card" role="listitem" href="#services-detail">
+        <div class="quick-service-icon" aria-hidden="true"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+        <div class="quick-service-title"><span data-lang="fr">Services mécaniques marins</span><span data-lang="es">Servicios mecánicos marinos</span><span data-lang="en">Marine mechanical services</span></div>
+      </a>
+      <a class="quick-service-card" role="listitem" href="#services-detail">
+        <div class="quick-service-icon" aria-hidden="true"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="13 7 8 13 12 13 11 17 16 11 12 11 13 7" fill="currentColor" stroke="none"/></svg></div>
+        <div class="quick-service-title"><span data-lang="fr">Systèmes électriques marins</span><span data-lang="es">Sistemas eléctricos marinos</span><span data-lang="en">Marine electrical systems</span></div>
+      </a>
+      <a class="quick-service-card" role="listitem" href="#services-detail">
+        <div class="quick-service-icon" aria-hidden="true"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 9V3h12v6"/><path d="M6 18h12v3H6z"/><rect x="6" y="9" width="12" height="9"/></svg></div>
+        <div class="quick-service-title"><span data-lang="fr">Soudure & fabrication</span><span data-lang="es">Soldadura y fabricación</span><span data-lang="en">Welding & fabrication</span></div>
+      </a>
+      <a class="quick-service-card" role="listitem" href="#services-detail">
+        <div class="quick-service-icon" aria-hidden="true"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M2 12h6l2-4 4 8 2-4h6"/></svg></div>
+        <div class="quick-service-title"><span data-lang="fr">Réparation fibre de verre</span><span data-lang="es">Reparación de fibra de vidrio</span><span data-lang="en">Fibreglass repair</span></div>
+      </a>
+      <a class="quick-service-card" role="listitem" href="#services-detail">
+        <div class="quick-service-icon" aria-hidden="true"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+        <div class="quick-service-title"><span data-lang="fr">Moteurs hors-bord & in-bord</span><span data-lang="es">Motores fuera y dentro de borda</span><span data-lang="en">Outboard & inboard engines</span></div>
+      </a>
+      <a class="quick-service-card" role="listitem" href="#services-detail">
+        <div class="quick-service-icon" aria-hidden="true"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="1" y="6" width="14" height="11" rx="1"/><path d="M15 10h4l3 3v4h-7z"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg></div>
+        <div class="quick-service-title"><span data-lang="fr">Logistique maritime</span><span data-lang="es">Logística marítima</span><span data-lang="en">Maritime logistics</span></div>
+      </a>
+      <a class="quick-service-card" role="listitem" href="#services-detail">
+        <div class="quick-service-icon" aria-hidden="true"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12" y2="20"/></svg></div>
+        <div class="quick-service-title"><span data-lang="fr">Internet & connectivité</span><span data-lang="es">Internet y conectividad</span><span data-lang="en">Internet & connectivity</span></div>
+      </a>
+      <a class="quick-service-card" role="listitem" href="#services-detail">
+        <div class="quick-service-icon" aria-hidden="true"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><path d="M12 7v13M5 12H2a10 10 0 0 0 20 0h-3"/></svg></div>
+        <div class="quick-service-title"><span data-lang="fr">Marina à sec & stockage bateaux</span><span data-lang="es">Marina en seco y almacenaje</span><span data-lang="en">Dry marina & boat storage</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES DETAIL ─── -->
+<section class="section" id="services-detail" aria-labelledby="services-title">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-tag">
+        <span data-lang="fr">En détail</span>
+        <span data-lang="es">En detalle</span>
+        <span data-lang="en">In detail</span>
+      </div>
+      <h2 class="section-title" id="services-title">
+        <span data-lang="fr">Tout pour votre embarcation</span>
+        <span data-lang="es">Todo para su embarcación</span>
+        <span data-lang="en">Everything your vessel needs</span>
+      </h2>
+      <p class="section-sub">
+        <span data-lang="fr">Des solutions complètes de maintenance, réparation et logistique maritime pour tous types d'embarcations, du voilier au yacht de luxe.</span>
+        <span data-lang="es">Soluciones integrales de mantenimiento, reparación y logística marítima para todo tipo de embarcaciones, desde veleros hasta yates de lujo.</span>
+        <span data-lang="en">Complete maintenance, repair and maritime logistics solutions for all vessel types, from sailing yachts to luxury motor yachts.</span>
+      </p>
+    </div>
+    <div class="services-grid" role="list">
+
+      <article class="service-card" role="listitem" aria-labelledby="svc1">
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <div class="service-title" id="svc1"><span data-lang="fr">Entretien préventif</span><span data-lang="es">Mantenimiento preventivo</span><span data-lang="en">Preventive Maintenance</span></div>
+        <p class="service-desc"><span data-lang="fr">Révisions complètes, inspection de la coque, systèmes mécaniques et électriques. Programmes d'entretien annuels personnalisés.</span><span data-lang="es">Revisiones completas, inspección del casco, sistemas mecánicos y eléctricos. Programas de mantenimiento anuales personalizados.</span><span data-lang="en">Full overhauls, hull inspection, mechanical and electrical systems. Personalised annual maintenance programmes.</span></p>
+      </article>
+
+      <article class="service-card" role="listitem" aria-labelledby="svc2">
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+        </div>
+        <div class="service-title" id="svc2"><span data-lang="fr">Réparation de moteurs</span><span data-lang="es">Reparación de motores</span><span data-lang="en">Engine Repair</span></div>
+        <p class="service-desc"><span data-lang="fr">Diagnostic, réparation et reprise d'alimentation pour tous types de moteurs marins. Inboard, hors-bord et diesel.</span><span data-lang="es">Diagnóstico, reparación y repotenciación para todos los tipos de motores marinos. Inboard, fuera de borda y diésel.</span><span data-lang="en">Diagnostics, repair and repower solutions for all marine engine types. Inboard, outboard and diesel.</span></p>
+      </article>
+
+      <article class="service-card" role="listitem" aria-labelledby="svc3">
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 20h20"/><path d="M6 20v-4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v4"/><path d="M12 4v8"/><path d="M8 8l4-4 4 4"/></svg>
+        </div>
+        <div class="service-title" id="svc3"><span data-lang="fr">Carénage & botadura</span><span data-lang="es">Varada y botadura</span><span data-lang="en">Haul-out & Launch</span></div>
+        <p class="service-desc"><span data-lang="fr">Travel lift 100 t, rampe de mise à l'eau et stockage en sec sécurisé. Capacité pour 22 embarcations jusqu'à 30 m.</span><span data-lang="es">Travel lift 100 t, rampa de botadura y almacenaje en seco seguro. Capacidad para 22 embarcaciones hasta 30 m.</span><span data-lang="en">100-tonne travel lift, launch ramp and secure dry storage. Capacity for 22 vessels up to 30 m LOA.</span></p>
+      </article>
+
+      <article class="service-card" role="listitem" aria-labelledby="svc4">
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+        </div>
+        <div class="service-title" id="svc4"><span data-lang="fr">Peinture & antifouling</span><span data-lang="es">Pintura y antifouling</span><span data-lang="en">Paint & Antifouling</span></div>
+        <p class="service-desc"><span data-lang="fr">Cabine de peinture pressurisée, application d'antifouling, gelcoat et vernis de haute qualité. Finitions professionnelles.</span><span data-lang="es">Cabina de pintura presurizada, aplicación de antifouling, gelcoat y barniz de alta calidad. Acabados profesionales.</span><span data-lang="en">Pressurised paint booth, antifouling application, gelcoat and premium varnish. Professional finishes.</span></p>
+      </article>
+
+      <article class="service-card" role="listitem" aria-labelledby="svc5">
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="service-title" id="svc5"><span data-lang="fr">Électronique marine</span><span data-lang="es">Electrónica marina</span><span data-lang="en">Marine Electronics</span></div>
+        <p class="service-desc"><span data-lang="fr">Installation et réparation de GPS, VHF, AIS, radar, pilote automatique et systèmes de navigation. Câblage certifié ABYC.</span><span data-lang="es">Instalación y reparación de GPS, VHF, AIS, radar, piloto automático y sistemas de navegación. Cableado certificado ABYC.</span><span data-lang="en">Installation and repair of GPS, VHF, AIS, radar, autopilot and navigation systems. ABYC-certified wiring.</span></p>
+      </article>
+
+      <article class="service-card" role="listitem" aria-labelledby="svc6">
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="service-title" id="svc6"><span data-lang="fr">Réparation fibres & bois</span><span data-lang="es">Reparación de fibra y madera</span><span data-lang="en">Fibreglass & Wood Repair</span></div>
+        <p class="service-desc"><span data-lang="fr">Réparation structurelle de coque en fibre de verre, stratification, osmose et menuiserie navale. Expertise en matériaux composites.</span><span data-lang="es">Reparación estructural de cascos de fibra de vidrio, estratificación, ósmosis y carpintería naval. Expertos en materiales compuestos.</span><span data-lang="en">Structural fibreglass hull repair, lamination, osmosis treatment and marine carpentry. Composite materials expertise.</span></p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── MISSION / VISION / VALUES ─── -->
+<section class="section alt" id="mission" aria-labelledby="mission-title">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:48px;">
+      <div class="section-tag">
+        <span data-lang="fr">Notre ADN</span>
+        <span data-lang="es">Nuestro ADN</span>
+        <span data-lang="en">Our DNA</span>
+      </div>
+      <h2 class="section-title" id="mission-title">
+        <span data-lang="fr">Mission, Vision & Valeurs</span>
+        <span data-lang="es">Misión, Visión & Valores</span>
+        <span data-lang="en">Mission, Vision & Values</span>
+      </h2>
+    </div>
+
+    <div class="mvv-grid">
+      <!-- Mission -->
+      <div class="mvv-card" style="border-left:4px solid var(--blue);">
+        <div class="mvv-label">Mission</div>
+        <h3 class="mvv-heading">
+          <span data-lang="fr">Notre Mission</span>
+          <span data-lang="es">Nuestra Misión</span>
+          <span data-lang="en">Our Mission</span>
+        </h3>
+        <p class="mvv-text">
+          <span data-lang="fr">Fournir des services nautiques fiables, innovants et de haute qualité, en offrant des solutions complètes de maintenance, de réparation et de logistique maritime. Nous nous engageons à assurer la sécurité, la performance et la longévité des embarcations de nos clients tout en contribuant au développement économique et maritime du nord-ouest d'Haïti.</span>
+          <span data-lang="es">Brindar servicios náuticos confiables, innovadores y de alta calidad, ofreciendo soluciones integrales de mantenimiento, reparación y logística marítima. Nos comprometemos a garantizar la seguridad, el rendimiento y la longevidad de las embarcaciones de nuestros clientes, contribuyendo al desarrollo económico y marítimo del noroeste de Haití.</span>
+          <span data-lang="en">To provide reliable, innovative and high-quality nautical services, offering complete maintenance, repair and maritime logistics solutions. We are committed to ensuring the safety, performance and longevity of our clients' vessels while contributing to the economic and maritime development of north-west Haiti.</span>
+        </p>
+      </div>
+
+      <!-- Vision -->
+      <div class="mvv-card navy-bg">
+        <div class="mvv-label">Vision</div>
+        <h3 class="mvv-heading">
+          <span data-lang="fr">Notre Vision</span>
+          <span data-lang="es">Nuestra Visión</span>
+          <span data-lang="en">Our Vision</span>
+        </h3>
+        <p class="mvv-text">
+          <span data-lang="fr">Devenir le principal centre de services maritimes et nautiques des Caraïbes, reconnu pour son excellence technique, son innovation, son professionnalisme et son engagement envers le développement durable de l'industrie maritime régionale.</span>
+          <span data-lang="es">Convertirnos en el principal centro de servicios marítimos y náuticos del Caribe, reconocido por su excelencia técnica, innovación, profesionalismo y compromiso con el desarrollo sostenible de la industria marítima regional.</span>
+          <span data-lang="en">To become the leading maritime and nautical services centre in the Caribbean, recognised for technical excellence, innovation, professionalism and commitment to the sustainable development of the regional maritime industry.</span>
+        </p>
+      </div>
+
+      <!-- Values — full width -->
+      <div class="mvv-card full">
+        <div class="mvv-label">
+          <span data-lang="fr">Nos Valeurs</span>
+          <span data-lang="es">Nuestros Valores</span>
+          <span data-lang="en">Our Values</span>
+        </div>
+        <div class="values-grid" role="list">
+          <div class="value-item" role="listitem">
+            <div class="value-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div>
+              <div class="value-name"><span data-lang="fr">Excellence</span><span data-lang="es">Excelencia</span><span data-lang="en">Excellence</span></div>
+              <div class="value-desc"><span data-lang="fr">Les plus hauts standards de qualité dans chacun de nos services.</span><span data-lang="es">Los más altos estándares de calidad en cada uno de nuestros servicios.</span><span data-lang="en">The highest quality standards in each of our services.</span></div>
+            </div>
+          </div>
+          <div class="value-item" role="listitem">
+            <div class="value-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622C17.176 19.29 21 14.591 21 9a12.02 12.02 0 0 0-.382-3.016z"/></svg></div>
+            <div>
+              <div class="value-name"><span data-lang="fr">Intégrité</span><span data-lang="es">Integridad</span><span data-lang="en">Integrity</span></div>
+              <div class="value-desc"><span data-lang="fr">Honnêteté, transparence et responsabilité envers tous nos partenaires.</span><span data-lang="es">Honestidad, transparencia y responsabilidad hacia todos nuestros socios.</span><span data-lang="en">Honesty, transparency and accountability towards all our partners.</span></div>
+            </div>
+          </div>
+          <div class="value-item" role="listitem">
+            <div class="value-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4l2 2"/></svg></div>
+            <div>
+              <div class="value-name"><span data-lang="fr">Sécurité</span><span data-lang="es">Seguridad</span><span data-lang="en">Safety</span></div>
+              <div class="value-desc"><span data-lang="fr">La sécurité des personnes, des embarcations et de l'environnement est absolue.</span><span data-lang="es">La seguridad de las personas, las embarcaciones y el medioambiente es absoluta.</span><span data-lang="en">The safety of people, vessels and the environment is our absolute priority.</span></div>
+            </div>
+          </div>
+          <div class="value-item" role="listitem">
+            <div class="value-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+            <div>
+              <div class="value-name"><span data-lang="fr">Innovation</span><span data-lang="es">Innovación</span><span data-lang="en">Innovation</span></div>
+              <div class="value-desc"><span data-lang="fr">Meilleures technologies et méthodes pour des solutions modernes et efficaces.</span><span data-lang="es">Las mejores tecnologías y métodos para soluciones modernas y eficientes.</span><span data-lang="en">Best technologies and methods for modern and efficient solutions.</span></div>
+            </div>
+          </div>
+          <div class="value-item" role="listitem">
+            <div class="value-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div>
+              <div class="value-name"><span data-lang="fr">Professionnalisme</span><span data-lang="es">Profesionalismo</span><span data-lang="en">Professionalism</span></div>
+              <div class="value-desc"><span data-lang="fr">Équipe hautement qualifiée engagée dans l'amélioration continue.</span><span data-lang="es">Equipo altamente calificado comprometido con la mejora continua.</span><span data-lang="en">Highly qualified team committed to continuous improvement.</span></div>
+            </div>
+          </div>
+          <div class="value-item" role="listitem">
+            <div class="value-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 22V12M12 12C12 6 6 2 6 2s6 2 6 8M12 12c0-6 6-10 6-10s-6 4-6 10"/></svg></div>
+            <div>
+              <div class="value-name"><span data-lang="fr">Développement durable</span><span data-lang="es">Desarrollo sostenible</span><span data-lang="en">Sustainability</span></div>
+              <div class="value-desc"><span data-lang="fr">Pratiques respectueuses de l'environnement et croissance maritime durable.</span><span data-lang="es">Prácticas respetuosas del medioambiente y crecimiento marítimo sostenible.</span><span data-lang="en">Environmentally responsible practices and sustainable maritime growth.</span></div>
+            </div>
+          </div>
+          <div class="value-item" role="listitem">
+            <div class="value-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+            <div>
+              <div class="value-name"><span data-lang="fr">Orientation client</span><span data-lang="es">Orientación al cliente</span><span data-lang="en">Client Focus</span></div>
+              <div class="value-desc"><span data-lang="fr">La satisfaction de nos clients est au cœur de toutes nos décisions.</span><span data-lang="es">La satisfacción de nuestros clientes es el centro de todas nuestras decisiones.</span><span data-lang="en">Client satisfaction is at the heart of every decision we make.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Commitment -->
+    <div class="commitment-wrap" style="margin-top:36px;" role="complementary" aria-labelledby="commitment-title">
+      <div class="commitment-text">
+        <div class="mvv-label" id="commitment-title">
+          <span data-lang="fr">Notre Engagement</span>
+          <span data-lang="es">Nuestro Compromiso</span>
+          <span data-lang="en">Our Commitment</span>
+        </div>
+        <div class="commitment-quote">
+          <span data-lang="fr">"Des services de <span>classe internationale</span>, des relations de <span>confiance durables</span>."</span>
+          <span data-lang="es">"Servicios de <span>clase internacional</span>, relaciones de <span>confianza duradera</span>."</span>
+          <span data-lang="en">"<span>World-class services</span>, built on <span>lasting trust</span>."</span>
+        </div>
+        <p>
+          <span data-lang="fr">Chez Don Lucas Marine Services, nous nous engageons à fournir des services de classe internationale, à respecter les délais convenus, à garantir la qualité de chaque intervention et à bâtir des relations de confiance durables avec nos clients, partenaires et communautés. Nous aspirons à devenir un acteur majeur du développement maritime d'Haïti en créant des emplois, en renforçant les compétences locales et en offrant des infrastructures modernes répondant aux standards internationaux.</span>
+          <span data-lang="es">En Don Lucas Marine Services, nos comprometemos a prestar servicios de clase mundial, respetar los plazos acordados, garantizar la calidad de cada intervención y construir relaciones de confianza duraderas con nuestros clientes, socios y comunidades. Aspiramos a convertirnos en un actor principal del desarrollo marítimo de Haití creando empleo, fortaleciendo las competencias locales y ofreciendo infraestructuras modernas que cumplen los estándares internacionales.</span>
+          <span data-lang="en">At Don Lucas Marine Services, we commit to delivering world-class services, meeting agreed deadlines, guaranteeing the quality of every intervention and building lasting trust with our clients, partners and communities. We aspire to become a key player in Haiti's maritime development by creating jobs, strengthening local skills and providing modern infrastructure that meets international standards.</span>
+        </p>
+      </div>
+      <div class="commitment-side" aria-hidden="true">
+        <div class="commitment-badge">
+          <div class="badge-big">100%</div>
+          <div class="badge-small">
+            <span data-lang="fr">Qualité<br>garantie</span>
+            <span data-lang="es">Calidad<br>garantizada</span>
+            <span data-lang="en">Quality<br>guaranteed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FACILITIES / INSTALLATIONS ─── -->
+<section class="section" id="installations" aria-labelledby="installations-title">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-tag">
+        <span data-lang="fr">Nos Installations</span>
+        <span data-lang="es">Nuestras Instalaciones</span>
+        <span data-lang="en">Our Facilities</span>
+      </div>
+      <h2 class="section-title" id="installations-title">
+        <span data-lang="fr">Infrastructure de pointe</span>
+        <span data-lang="es">Infraestructura de vanguardia</span>
+        <span data-lang="en">State-of-the-art infrastructure</span>
+      </h2>
+      <p class="section-sub">
+        <span data-lang="fr">Un chantier naval conçu aux standards internationaux, entièrement autonome en énergie solaire et eau potable.</span>
+        <span data-lang="es">Un astillero diseñado según los estándares internacionales, completamente autónomo en energía solar y agua potable.</span>
+        <span data-lang="en">A boatyard designed to international standards, fully self-sufficient in solar energy and fresh water.</span>
+      </p>
+    </div>
+    <div class="facility-grid" role="list">
+      <div class="facility-card" role="listitem">
+        <div class="facility-num">100</div>
+        <div class="facility-unit">tonnes</div>
+        <div class="facility-label"><span data-lang="fr">Travel lift</span><span data-lang="es">Travel lift</span><span data-lang="en">Travel lift</span></div>
+      </div>
+      <div class="facility-card" role="listitem">
+        <div class="facility-num">30</div>
+        <div class="facility-unit">m LOA</div>
+        <div class="facility-label"><span data-lang="fr">Taille max. embarcation</span><span data-lang="es">Eslora máxima</span><span data-lang="en">Max vessel length</span></div>
+      </div>
+      <div class="facility-card" role="listitem">
+        <div class="facility-num">22</div>
+        <div class="facility-unit"><span data-lang="fr">emb.</span><span data-lang="es">emb.</span><span data-lang="en">vessels</span></div>
+        <div class="facility-label"><span data-lang="fr">Stockage à sec</span><span data-lang="es">Almacenaje en seco</span><span data-lang="en">Dry storage</span></div>
+      </div>
+      <div class="facility-card" role="listitem">
+        <div class="facility-num">12</div>
+        <div class="facility-unit"><span data-lang="fr">postes</span><span data-lang="es">puestos</span><span data-lang="en">berths</span></div>
+        <div class="facility-label"><span data-lang="fr">Poste à quai</span><span data-lang="es">Puestos de atraque</span><span data-lang="en">Marina berths</span></div>
+      </div>
+      <div class="facility-card" role="listitem">
+        <div class="facility-num">120</div>
+        <div class="facility-unit">kWp</div>
+        <div class="facility-label"><span data-lang="fr">Énergie solaire</span><span data-lang="es">Energía solar</span><span data-lang="en">Solar power</span></div>
+      </div>
+      <div class="facility-card" role="listitem">
+        <div class="facility-num">60k</div>
+        <div class="facility-unit">L</div>
+        <div class="facility-label"><span data-lang="fr">Réserve d'eau</span><span data-lang="es">Reserva de agua</span><span data-lang="en">Water storage</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SAFETY & SECURITY ─── -->
+<section class="security-section" id="securite" aria-labelledby="security-title">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:40px;">
+      <div class="section-tag">
+        <span data-lang="fr">Sécurité & Normes</span>
+        <span data-lang="es">Seguridad & Normas</span>
+        <span data-lang="en">Safety & Standards</span>
+      </div>
+      <h2 class="section-title" id="security-title">
+        <span data-lang="fr">La sécurité, notre priorité absolue</span>
+        <span data-lang="es">La seguridad, nuestra prioridad absoluta</span>
+        <span data-lang="en">Safety, our absolute priority</span>
+      </h2>
+    </div>
+    <div class="security-grid" role="list">
+      <div class="security-card" role="listitem">
+        <div class="sec-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+        <div><div class="sec-title">SOLAS</div><div class="sec-desc"><span data-lang="fr">Conformité aux normes de sécurité maritimes internationales SOLAS.</span><span data-lang="es">Conformidad con las normas de seguridad marítima internacional SOLAS.</span><span data-lang="en">Compliance with international maritime safety standards SOLAS.</span></div></div>
+      </div>
+      <div class="security-card" role="listitem">
+        <div class="sec-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 22V12M12 12C12 6 6 2 6 2s6 2 6 8M12 12c0-6 6-10 6-10s-6 4-6 10"/></svg></div>
+        <div><div class="sec-title">MARPOL</div><div class="sec-desc"><span data-lang="fr">Traitement des eaux usées et déchets marins conforme à MARPOL 73/78.</span><span data-lang="es">Tratamiento de aguas residuales y desechos marinos conforme a MARPOL 73/78.</span><span data-lang="en">Wastewater and marine waste treatment compliant with MARPOL 73/78.</span></div></div>
+      </div>
+      <div class="security-card" role="listitem">
+        <div class="sec-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div><div class="sec-title">ISO 9001</div><div class="sec-desc"><span data-lang="fr">Système de management de la qualité certifié ISO 9001.</span><span data-lang="es">Sistema de gestión de calidad certificado ISO 9001.</span><span data-lang="en">ISO 9001 certified quality management system.</span></div></div>
+      </div>
+      <div class="security-card" role="listitem">
+        <div class="sec-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div><div class="sec-title">ISPS Code</div><div class="sec-desc"><span data-lang="fr">Protocoles de sûreté portuaire conformes au code ISPS international.</span><span data-lang="es">Protocolos de seguridad portuaria conformes al código ISPS internacional.</span><span data-lang="en">Port security protocols compliant with the international ISPS code.</span></div></div>
+      </div>
+      <div class="security-card" role="listitem">
+        <div class="sec-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></div>
+        <div>
+          <div class="sec-title"><span data-lang="fr">Plan d'urgence 24/7</span><span data-lang="es">Plan de emergencia 24/7</span><span data-lang="en">24/7 Emergency Plan</span></div>
+          <div class="sec-desc"><span data-lang="fr">Équipe d'intervention d'urgence disponible 24h/24, 7j/7.</span><span data-lang="es">Equipo de respuesta de emergencia disponible las 24 horas, 7 días a la semana.</span><span data-lang="en">Emergency response team available 24 hours a day, 7 days a week.</span></div>
+        </div>
+      </div>
+      <div class="security-card" role="listitem">
+        <div class="sec-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M1 6l11 7 11-7"/><path d="M1 6v12a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V6"/></svg></div>
+        <div>
+          <div class="sec-title"><span data-lang="fr">Données SSL cryptées</span><span data-lang="es">Datos SSL cifrados</span><span data-lang="en">SSL Encrypted Data</span></div>
+          <div class="sec-desc"><span data-lang="fr">Toutes les communications et données clients protégées par chiffrement SSL/TLS.</span><span data-lang="es">Todas las comunicaciones y datos de clientes protegidos con cifrado SSL/TLS.</span><span data-lang="en">All client communications and data protected by SSL/TLS encryption.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GALERIE ─── -->
+<section class="section alt" id="galerie" aria-labelledby="galerie-title">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-tag">
+        <span data-lang="fr">Galerie</span>
+        <span data-lang="es">Galería</span>
+        <span data-lang="en">Gallery</span>
+      </div>
+      <h2 class="section-title" id="galerie-title">
+        <span data-lang="fr">Notre chantier en images</span>
+        <span data-lang="es">Nuestro astillero en imágenes</span>
+        <span data-lang="en">Our yard in pictures</span>
+      </h2>
+      <p class="section-sub">
+        <span data-lang="fr">Un aperçu de nos installations, de notre équipe au travail et des embarcations que nous entretenons.</span>
+        <span data-lang="es">Un vistazo a nuestras instalaciones, nuestro equipo en acción y las embarcaciones que mantenemos.</span>
+        <span data-lang="en">A look at our facilities, our team at work, and the vessels we service.</span>
+      </p>
+    </div>
+    <div class="gallery-grid" role="list">
+      <div class="gallery-item span-2" role="listitem" data-caption-fr="Travel lift 100 t en opération" data-caption-es="Travel lift de 100 t en operación" data-caption-en="100-tonne travel lift in operation"></div>
+      <div class="gallery-item" role="listitem" data-caption-fr="Cabine de peinture" data-caption-es="Cabina de pintura" data-caption-en="Paint booth"></div>
+      <div class="gallery-item" role="listitem" data-caption-fr="Atelier mécanique" data-caption-es="Taller mecánico" data-caption-en="Mechanical workshop"></div>
+      <div class="gallery-item" role="listitem" data-caption-fr="Stockage à sec" data-caption-es="Almacenaje en seco" data-caption-en="Dry storage"></div>
+      <div class="gallery-item span-2" role="listitem" data-caption-fr="Vue du quai" data-caption-es="Vista del muelle" data-caption-en="Dock view"></div>
+      <div class="gallery-item" role="listitem" data-caption-fr="Équipe au travail" data-caption-es="Equipo en acción" data-caption-en="Team at work"></div>
+    </div>
+    <p class="gallery-note">
+      <span data-lang="fr">Emplacements réservés — remplacez chaque bloc par vos photos réelles (voir note technique).</span>
+      <span data-lang="es">Espacios reservados — reemplace cada bloque con sus fotos reales (ver nota técnica).</span>
+      <span data-lang="en">Placeholder tiles — replace each block with your real photos (see technical note).</span>
+    </p>
+  </div>
+</section>
+
+<!-- ─── CARRIÈRES ─── -->
+<section class="section" id="carrieres" aria-labelledby="carrieres-title">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-tag">
+        <span data-lang="fr">Carrières</span>
+        <span data-lang="es">Empleos</span>
+        <span data-lang="en">Careers</span>
+      </div>
+      <h2 class="section-title" id="carrieres-title">
+        <span data-lang="fr">Rejoignez notre équipe</span>
+        <span data-lang="es">Únase a nuestro equipo</span>
+        <span data-lang="en">Join our team</span>
+      </h2>
+      <p class="section-sub">
+        <span data-lang="fr">Nous recrutons des professionnels passionnés par le secteur maritime, prêts à contribuer au premier centre nautique de classe internationale d'Haïti.</span>
+        <span data-lang="es">Buscamos profesionales apasionados por el sector marítimo, listos para contribuir al primer centro náutico de clase internacional de Haití.</span>
+        <span data-lang="en">We're recruiting professionals passionate about the maritime sector, ready to contribute to Haiti's first world-class nautical centre.</span>
+      </p>
+    </div>
+    <div class="jobs-list" role="list">
+      <div class="job-item" role="listitem">
+        <div class="job-info">
+          <div class="job-title"><span data-lang="fr">Mécanicien(ne) marine</span><span data-lang="es">Mecánico(a) marino</span><span data-lang="en">Marine Mechanic</span></div>
+          <div class="job-meta"><span data-lang="fr">Temps plein · Môle Saint-Nicolas</span><span data-lang="es">Tiempo completo · Môle Saint-Nicolas</span><span data-lang="en">Full-time · Môle Saint-Nicolas</span></div>
+        </div>
+        <a class="job-apply" href="mailto:info@donlucasmarine.com?subject=Candidature%20-%20Mecanicien%20marine"><span data-lang="fr">Postuler</span><span data-lang="es">Postularme</span><span data-lang="en">Apply</span></a>
+      </div>
+      <div class="job-item" role="listitem">
+        <div class="job-info">
+          <div class="job-title"><span data-lang="fr">Électricien(ne) marin(e)</span><span data-lang="es">Electricista marino(a)</span><span data-lang="en">Marine Electrician</span></div>
+          <div class="job-meta"><span data-lang="fr">Temps plein · Môle Saint-Nicolas</span><span data-lang="es">Tiempo completo · Môle Saint-Nicolas</span><span data-lang="en">Full-time · Môle Saint-Nicolas</span></div>
+        </div>
+        <a class="job-apply" href="mailto:info@donlucasmarine.com?subject=Candidature%20-%20Electricien%20marin"><span data-lang="fr">Postuler</span><span data-lang="es">Postularme</span><span data-lang="en">Apply</span></a>
+      </div>
+      <div class="job-item" role="listitem">
+        <div class="job-info">
+          <div class="job-title"><span data-lang="fr">Soudeur / Fabricant</span><span data-lang="es">Soldador / Fabricante</span><span data-lang="en">Welder / Fabricator</span></div>
+          <div class="job-meta"><span data-lang="fr">Temps plein · Môle Saint-Nicolas</span><span data-lang="es">Tiempo completo · Môle Saint-Nicolas</span><span data-lang="en">Full-time · Môle Saint-Nicolas</span></div>
+        </div>
+        <a class="job-apply" href="mailto:info@donlucasmarine.com?subject=Candidature%20-%20Soudeur%20Fabricant"><span data-lang="fr">Postuler</span><span data-lang="es">Postularme</span><span data-lang="en">Apply</span></a>
+      </div>
+    </div>
+    <p class="jobs-note">
+      <span data-lang="fr">Aucun poste ne correspond ? Envoyez-nous votre CV à <a href="mailto:info@donlucasmarine.com">info@donlucasmarine.com</a>, nous le conservons pour nos prochains recrutements.</span>
+      <span data-lang="es">¿Ningún puesto coincide? Envíenos su CV a <a href="mailto:info@donlucasmarine.com">info@donlucasmarine.com</a>, lo conservamos para futuras contrataciones.</span>
+      <span data-lang="en">No match? Send us your CV at <a href="mailto:info@donlucasmarine.com">info@donlucasmarine.com</a> and we'll keep it for future openings.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ─── LOCATION ─── -->
+<section class="section" id="location" aria-labelledby="location-title">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:48px;">
+      <div class="section-tag">
+        <span data-lang="fr">Localisation</span>
+        <span data-lang="es">Ubicación</span>
+        <span data-lang="en">Location</span>
+      </div>
+      <h2 class="section-title" id="location-title">
+        <span data-lang="fr">Au cœur du Canal du Vent</span>
+        <span data-lang="es">En el corazón del Canal del Viento</span>
+        <span data-lang="en">At the heart of the Windward Passage</span>
+      </h2>
+    </div>
+    <div class="location-grid">
+      <div class="location-map-frame" role="img" aria-label="Carte de localisation du site — Môle Saint-Nicolas, Haïti">
+        <div class="map-placeholder">
+          <div class="map-pin-animation" aria-hidden="true">
+            <svg width="36" height="36" fill="none" stroke="#B8935A" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div style="font-family:Montserrat,sans-serif;font-weight:700;font-size:16px;color:white;">
+            <span data-lang="fr">Môle Saint-Nicolas</span>
+            <span data-lang="es">Môle Saint-Nicolas</span>
+            <span data-lang="en">Môle Saint-Nicolas</span>
+          </div>
+          <div style="font-size:13px;color:rgba(255,255,255,.55);margin-top:6px;">Nord-Ouest, Haïti</div>
+          <div class="map-coords">19°42'35.70"N · 73°27'08.03"W</div>
+          <div style="margin-top:20px;">
+            <a href="https://maps.google.com/?q=19.709917,-73.452231" target="_blank" rel="noopener noreferrer"
+               style="display:inline-flex;align-items:center;gap:7px;background:var(--gold);color:var(--navy);font-family:Montserrat,sans-serif;font-weight:700;font-size:12px;padding:9px 18px;border-radius:6px;text-decoration:none;"
+               aria-label="Ouvrir dans Google Maps">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <span data-lang="fr">Google Maps</span><span data-lang="es">Google Maps</span><span data-lang="en">Google Maps</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="location-details" role="list">
+        <div class="loc-item" role="listitem">
+          <div class="loc-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div>
+            <div class="loc-title"><span data-lang="fr">Adresse</span><span data-lang="es">Dirección</span><span data-lang="en">Address</span></div>
+            <div class="loc-desc">19°42'35.70"N · 73°27'08.03"W<br>
+              <span data-lang="fr">~11 km au sud de Môle Saint-Nicolas, Nord-Ouest, Haïti</span>
+              <span data-lang="es">~11 km al sur de Môle Saint-Nicolas, Nord-Ouest, Haití</span>
+              <span data-lang="en">~11 km south of Môle Saint-Nicolas, Nord-Ouest, Haiti</span>
+            </div>
+          </div>
+        </div>
+        <div class="loc-item" role="listitem">
+          <div class="loc-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div>
+            <div class="loc-title"><span data-lang="fr">Horaires</span><span data-lang="es">Horario</span><span data-lang="en">Hours</span></div>
+            <div class="loc-desc">
+              <span data-lang="fr">Lun – Ven : 07h00 – 17h00<br>Samedi : 08h00 – 13h00<br>Urgences : 24h/24 · 7j/7</span>
+              <span data-lang="es">Lun – Vie : 07h00 – 17h00<br>Sábado : 08h00 – 13h00<br>Emergencias : 24h/24 · 7d/7</span>
+              <span data-lang="en">Mon – Fri : 07:00 – 17:00<br>Saturday : 08:00 – 13:00<br>Emergencies : 24/7</span>
+            </div>
+          </div>
+        </div>
+        <div class="loc-item" role="listitem">
+          <div class="loc-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12H19M12 5l7 7-7 7"/></svg></div>
+          <div>
+            <div class="loc-title"><span data-lang="fr">Accès maritime</span><span data-lang="es">Acceso marítimo</span><span data-lang="en">Maritime access</span></div>
+            <div class="loc-desc">
+              <span data-lang="fr">VHF Canal 16 · Mouillage protégé disponible · Carburant diesel et eau à quai</span>
+              <span data-lang="es">VHF Canal 16 · Fondeadero protegido disponible · Combustible diésel y agua en muelle</span>
+              <span data-lang="en">VHF Channel 16 · Protected anchorage available · Diesel fuel and water at dock</span>
+            </div>
+          </div>
+        </div>
+        <div class="loc-item" role="listitem">
+          <div class="loc-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.08 6.08l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div>
+            <div class="loc-title"><span data-lang="fr">Contact d'urgence</span><span data-lang="es">Contacto de emergencia</span><span data-lang="en">Emergency contact</span></div>
+            <div class="loc-desc">+509 · VHF Ch.16 · info@donlucasmarine.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="waterline">
+  <div class="waterline-rule"></div>
+  <div class="waterline-mark">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    ENTRETIEN · RÉPARATION · PERFORMANCE
+  </div>
+  <div class="waterline-rule"></div>
+</div>
+
+<!-- ─── CONTACT ─── -->
+<section class="section alt" id="contact" aria-labelledby="contact-title">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div>
+          <div class="section-tag" style="margin-bottom:12px;">
+            <span data-lang="fr">Contactez-nous</span>
+            <span data-lang="es">Contáctenos</span>
+            <span data-lang="en">Contact us</span>
+          </div>
+          <h2 class="contact-headline" id="contact-title">
+            <span data-lang="fr">Parlons de votre projet</span>
+            <span data-lang="es">Hablemos de su proyecto</span>
+            <span data-lang="en">Let's talk about your project</span>
+          </h2>
+          <p class="contact-subtext">
+            <span data-lang="fr">Notre équipe est disponible pour répondre à toutes vos questions et établir un devis personnalisé pour votre embarcation.</span>
+            <span data-lang="es">Nuestro equipo está disponible para responder todas sus preguntas y elaborar una cotización personalizada para su embarcación.</span>
+            <span data-lang="en">Our team is available to answer all your questions and provide a personalised quote for your vessel.</span>
+          </p>
+        </div>
+        <div class="contact-items" role="list">
+          <div class="contact-item" role="listitem">
+            <div class="contact-item-icon" aria-hidden="true"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.08 6.08l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div>
+              <div class="contact-item-label"><span data-lang="fr">Téléphone</span><span data-lang="es">Teléfono</span><span data-lang="en">Phone</span></div>
+              <div class="contact-item-value">+509 ···· ···· · VHF Ch.16</div>
+            </div>
+          </div>
+          <div class="contact-item" role="listitem">
+            <div class="contact-item-icon" aria-hidden="true"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div>
+              <div class="contact-item-label">Email</div>
+              <div class="contact-item-value">info@donlucasmarine.com</div>
+            </div>
+          </div>
+          <div class="contact-item" role="listitem">
+            <div class="contact-item-icon" aria-hidden="true"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div>
+              <div class="contact-item-label"><span data-lang="fr">Coordonnées GPS</span><span data-lang="es">Coordenadas GPS</span><span data-lang="en">GPS coordinates</span></div>
+              <div class="contact-item-value">19°42'35.70"N · 73°27'08.03"W</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form" role="form" aria-labelledby="form-title">
+        <div class="form-title" id="form-title">
+          <span data-lang="fr">Demande de devis</span>
+          <span data-lang="es">Solicitud de cotización</span>
+          <span data-lang="en">Request a quote</span>
+        </div>
+        <form action="mailto:info@donlucasmarine.com" method="post" enctype="text/plain" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="fname">
+                <span data-lang="fr">Prénom</span><span data-lang="es">Nombre</span><span data-lang="en">First name</span> *
+              </label>
+              <input class="form-input" type="text" id="fname" name="fname" required autocomplete="given-name"
+                placeholder="Jean / Juan / John">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="lname">
+                <span data-lang="fr">Nom</span><span data-lang="es">Apellido</span><span data-lang="en">Last name</span> *
+              </label>
+              <input class="form-input" type="text" id="lname" name="lname" required autocomplete="family-name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email *</label>
+            <input class="form-input" type="email" id="email" name="email" required autocomplete="email"
+              placeholder="email@example.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="vessel">
+              <span data-lang="fr">Type d'embarcation</span><span data-lang="es">Tipo de embarcación</span><span data-lang="en">Vessel type</span>
+            </label>
+            <input class="form-input" type="text" id="vessel" name="vessel"
+              placeholder="Ex: Voilier 12m / Lancha 8m / Motor yacht 20m">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="service">
+              <span data-lang="fr">Service souhaité</span><span data-lang="es">Servicio deseado</span><span data-lang="en">Service required</span>
+            </label>
+            <select class="form-input" id="service" name="service">
+              <option value=""><span data-lang="fr">— Sélectionner —</span><span data-lang="es">— Seleccionar —</span><span data-lang="en">— Select —</span></option>
+              <option value="maintenance">Entretien / Mantenimiento / Maintenance</option>
+              <option value="moteurs">Réparation moteurs / Motores / Engines</option>
+              <option value="carenage">Carénage / Varada / Haul-out</option>
+              <option value="peinture">Peinture / Pintura / Paint</option>
+              <option value="electronique">Électronique / Electrónica / Electronics</option>
+              <option value="autre">Autre / Otro / Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">Message *</label>
+            <textarea class="form-input textarea" id="message" name="message" required
+              placeholder="Décrivez votre besoin / Describa su necesidad / Describe your needs..."></textarea>
+          </div>
+          <button type="submit" class="form-submit" aria-label="Envoyer la demande">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            <span data-lang="fr">Envoyer la demande</span>
+            <span data-lang="es">Enviar solicitud</span>
+            <span data-lang="en">Send request</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-name">DON LUCAS</div>
+        <div class="footer-logo-sub">Marine Services</div>
+        <p>
+          <span data-lang="fr">Le premier centre nautique de classe internationale du Canal du Vent. Haïti.</span>
+          <span data-lang="es">El primer centro náutico de clase internacional del Canal del Viento. Haití.</span>
+          <span data-lang="en">The first world-class nautical centre of the Windward Passage. Haiti.</span>
+        </p>
+        <div class="social-row" role="list" aria-label="Réseaux sociaux">
+          <div class="social-btn" role="listitem" aria-label="Facebook" tabindex="0">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </div>
+          <div class="social-btn" role="listitem" aria-label="WhatsApp" tabindex="0">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
+          <div class="social-btn" role="listitem" aria-label="Instagram" tabindex="0">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">
+          <span data-lang="fr">Services</span><span data-lang="es">Servicios</span><span data-lang="en">Services</span>
+        </div>
+        <div class="footer-links" role="list">
+          <a class="footer-link" href="#services" role="listitem"><span data-lang="fr">Entretien</span><span data-lang="es">Mantenimiento</span><span data-lang="en">Maintenance</span></a>
+          <a class="footer-link" href="#services" role="listitem"><span data-lang="fr">Réparation moteurs</span><span data-lang="es">Reparación motores</span><span data-lang="en">Engine repair</span></a>
+          <a class="footer-link" href="#services" role="listitem"><span data-lang="fr">Carénage</span><span data-lang="es">Varada</span><span data-lang="en">Haul-out</span></a>
+          <a class="footer-link" href="#services" role="listitem"><span data-lang="fr">Peinture</span><span data-lang="es">Pintura</span><span data-lang="en">Paint</span></a>
+          <a class="footer-link" href="#services" role="listitem"><span data-lang="fr">Électronique</span><span data-lang="es">Electrónica</span><span data-lang="en">Electronics</span></a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">
+          <span data-lang="fr">Navigation</span><span data-lang="es">Navegación</span><span data-lang="en">Navigation</span>
+        </div>
+        <div class="footer-links" role="list">
+          <a class="footer-link" href="#home" role="listitem"><span data-lang="fr">Accueil</span><span data-lang="es">Inicio</span><span data-lang="en">Home</span></a>
+          <a class="footer-link" href="#mission" role="listitem"><span data-lang="fr">Mission & Valeurs</span><span data-lang="es">Misión & Valores</span><span data-lang="en">Mission & Values</span></a>
+          <a class="footer-link" href="#installations" role="listitem"><span data-lang="fr">Installations</span><span data-lang="es">Instalaciones</span><span data-lang="en">Facilities</span></a>
+          <a class="footer-link" href="#securite" role="listitem"><span data-lang="fr">Sécurité</span><span data-lang="es">Seguridad</span><span data-lang="en">Safety</span></a>
+          <a class="footer-link" href="#contact" role="listitem"><span data-lang="fr">Contact</span><span data-lang="es">Contacto</span><span data-lang="en">Contact</span></a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">
+          <span data-lang="fr">Infos pratiques</span><span data-lang="es">Info práctica</span><span data-lang="en">Practical info</span>
+        </div>
+        <div class="footer-links" role="list">
+          <div class="footer-link" role="listitem">VHF Canal 16</div>
+          <div class="footer-link" role="listitem">GPS: 19°42'35.70"N</div>
+          <div class="footer-link" role="listitem">73°27'08.03"W</div>
+          <div class="footer-link" role="listitem">info@donlucasmarine.com</div>
+          <div class="footer-link" role="listitem">Haïti, Nord-Ouest</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-text">
+        © 2025 Don Lucas Marine Services · <span data-lang="fr">Tous droits réservés</span><span data-lang="es">Todos los derechos reservados</span><span data-lang="en">All rights reserved</span>
+      </div>
+      <div class="footer-bottom-right">
+        <a class="footer-bottom-link" href="#">
+          <span data-lang="fr">Politique de confidentialité</span>
+          <span data-lang="es">Política de privacidad</span>
+          <span data-lang="en">Privacy Policy</span>
+        </a>
+        <a class="footer-bottom-link" href="#">
+          <span data-lang="fr">Mentions légales</span>
+          <span data-lang="es">Aviso legal</span>
+          <span data-lang="en">Legal Notice</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ─── LANGUAGE SWITCHER ───
+function setLang(lang) {
+  document.body.className = 'lang-' + lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang);
+  });
+}
+
+// ─── MOBILE MENU ───
+function openMobile() {
+  document.getElementById('mobileMenu').classList.add('open');
+  document.getElementById('navToggle').setAttribute('aria-expanded','true');
+  document.body.style.overflow = 'hidden';
+}
+function closeMobile() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('navToggle').setAttribute('aria-expanded','false');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobile(); });
+
+// ─── SMOOTH SCROLL + ACTIVE LINK ───
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+
+// ─── FORM VALIDATION ───
+document.querySelector('form').addEventListener('submit', function(e) {
+  const required = this.querySelectorAll('[required]');
+  let valid = true;
+  required.forEach(field => {
+    if (!field.value.trim()) {
+      field.style.borderColor = '#e34948';
+      valid = false;
+    } else {
+      field.style.borderColor = '';
+    }
+  });
+  if (!valid) { e.preventDefault(); }
+});
+
+// ─── INTERSECTION OBSERVER: fade-in cards ───
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.service-card, .facility-card, .security-card, .mvv-card, .quick-service-card, .job-item, .gallery-item, .text-center').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(18px)';
+  el.style.transition = 'opacity .45s ease, transform .45s ease';
+  io.observe(el);
+});
+
+// ─── REDUCE MOTION RESPECT ───
+if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelectorAll('[style*="animation"]').forEach(el => el.style.animation = 'none');
+}
+</script>
+
+</body>
+</html>
